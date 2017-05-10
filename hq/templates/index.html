@@ -9,7 +9,7 @@
     <div id="" style="overflow-y: scroll; height:300px; width: 50%; display: inline-block ">
 
     {% for product in products %}
-        <p>
+        <p onclick="editFunc()">
             {{ product.name }}
             {{ product.author }}
             {{ product.category }}
@@ -22,16 +22,19 @@
 
     </div>
     <div style="display: inline-block">
-        <form action="/home/createProduct/" method="post" style="display:inline-block">
+        <form action="/home/handle_product/" method="post" style="display:inline-block">
             {% csrf_token %}
-            <div><input placeholder="Name" type="text" name="name"/></div>
+            <div><input placeholder="Name" type="text" name="name" id="name"/></div>
             <div><input placeholder="Author" type="text" name="author"/></div>
             <div><input placeholder="Category" type="text" name="category"/></div>
             <div><input placeholder="2017-05-06" type="text" name="date"/></div>
             <div><input placeholder="Quantity" type="number" name="quantity"/></div>
             <div><input placeholder="Price" type="number" name="price"/></div>
             <div><input placeholder="Sold Count" type="number" name="soldcount"/></div>
-            <div><button type="submit">Create</button></div>
+            <div>
+                <button type="submit" name="button" value="create">Create</button>
+                <button type="submit" name="button" value="delete">Delete</button>
+            </div>
         </form>
     </div>
 </div>
@@ -49,17 +52,27 @@
 
     </div>
     <div style="display: inline-block">
-        <form action="/home/createProduct/" method="post" style="display:inline-block">
+        <form action="/auth/createUser/" method="post" style="display:inline-block">
             {% csrf_token %}
             <div><input placeholder="Email" type="text" name="email"/></div>
             <div><input placeholder="Username" type="text" name="username"/></div>
             <div><input placeholder="Password" type="text" name="password"/></div>
-            <div><input placeholder="IsAdmin" type="checkbox" name="isadmin"/></div>
-            <div><button type="submit">Create</button></div>
+            <div><input placeholder="Password Again" type="password" name="passwordagain"/></div>
+            <div><input type="hidden" name="homepage" value="1"></div>
+            <div><input type="hidden" name="isadmin" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"></div>
+            <div>
+                <button type="submit" name="create" value="click">Create</button>
+                <button type="submit" name="delete" value="click">Delete</button>
+            </div>
         </form>
     </div>
 </div>
 
 
 </body>
+<script>
+    function editFunc() {
+        document.getElementsByName("name").placeholder = "red";
+}
+</script>
 </html>

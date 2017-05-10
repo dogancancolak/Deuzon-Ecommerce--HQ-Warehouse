@@ -12,7 +12,8 @@
             <div><input placeholder="Username" type="text" name="username"/></div>
             <div><input placeholder="Password" type="password" name="password"/></div>
             <div><input placeholder="Password Again" type="password" name="passwordagain"/></div>
-            <div><input placeholder="IsAdmin" type="checkbox" name="isadmin"/></div>
+            <div><input type="hidden" name="homepage" value="0"></div>
+            <div><input type="hidden" name="isadmin" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"></div>
             <div><button type="submit">Create</button></div>
     </form>
 

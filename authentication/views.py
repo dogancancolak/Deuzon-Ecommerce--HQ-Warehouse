@@ -17,7 +17,7 @@ def makeAuth(request):
 
 def register(request):
 
-    return render(request, 'register.html',{})
+    return render(request, 'register.html', {})
 
 
 def login(request):
@@ -27,16 +27,21 @@ def login(request):
 
 def createUser(request):
     params = request.POST
-    embed()
+
     if (params["email"] is not "") \
             and (params["username"] is not "") \
             and (params["password"] is not "") \
             and (params["passwordagain"] == params["password"]):
 
-        User.objects.create(email=params["email"],
-                               username=params["username"],
-                               password=params["password"],
-                               isAdmin=bool(params["isadmin"]))
-        return login(request)
+        User.objects.update_or_create(email=params["email"],
+                                      defaults={"username": params["username"],
+                                                "password": params["password"],
+                                                "isAdmin": params["isadmin"]}
+                                        )
+
+        if params["homepage"] == "1":
+            return index(request)
+        else:
+            return login(request)
     else:
         return HttpResponse("asd")
