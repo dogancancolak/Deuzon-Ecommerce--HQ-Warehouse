@@ -5,14 +5,38 @@
     <title>Home</title>
 </head>
 <body>
-<div id="" style="overflow-y: scroll; height:100px; width: 100px; alignment: center">
+<div>
+    <div id="" style="overflow-y: scroll; height:300px; width: 50%; display: inline-block ">
 
     {% for product in products %}
         <p>
-            {{ product.name}}
+            {{ product.name }}
+            {{ product.author }}
+            {{ product.category }}
+            {{ product.date }}
+            {{ product.quantity }}
+            {{ product.price }}
+            {{ product.soldcount }}
         </p>
     {% endfor %}
 
+    </div>
+    <div style="display: inline-block">
+        <form action="/home/createProduct/" method="post" style="display:inline-block">
+            {% csrf_token %}
+            <div><input placeholder="Name" type="text" name="name"/></div>
+            <div><input placeholder="Author" type="text" name="author"/></div>
+            <div><input placeholder="Category" type="text" name="category"/></div>
+            <div><input placeholder="2017-05-06" type="text" name="date"/></div>
+            <div><input placeholder="Quantity" type="number" name="quantity"/></div>
+            <div><input placeholder="Price" type="number" name="price"/></div>
+            <div><input placeholder="Sold Count" type="number" name="soldcount"/></div>
+            <div><button type="submit">Create</button></div>
+        </form>
+    </div>
 </div>
+
+
+
 </body>
 </html>
