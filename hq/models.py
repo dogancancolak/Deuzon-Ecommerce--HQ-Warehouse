@@ -29,13 +29,6 @@ class Order(models.Model):
     billNo = models.IntegerField(default=0, null=True)
     customerAddress = models.CharField(max_length=30,default="nil", null=True)
     customerPhone = models.CharField(max_length=30,default="nil", null=True)
-    
-
-class User(models.Model):
-
-    email = models.CharField(max_length=30,default="nil", null=True)
-    username = models.CharField(max_length=30,default="nil", null=True)
-    password = models.CharField(max_length=30,default="nil", null=True)
 
 
 class CargoPrice(models.Model):

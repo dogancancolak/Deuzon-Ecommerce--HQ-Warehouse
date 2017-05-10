@@ -35,7 +35,30 @@
         </form>
     </div>
 </div>
+<div>
+    <div id="" style="overflow-y: scroll; height:300px; width: 50%; display: inline-block ">
 
+    {% for user in users %}
+        <p>
+            {{ user.email }}
+            {{ user.username }}
+            {{ user.password }}
+            {{ user.isAdmin }}
+        </p>
+    {% endfor %}
+
+    </div>
+    <div style="display: inline-block">
+        <form action="/home/createProduct/" method="post" style="display:inline-block">
+            {% csrf_token %}
+            <div><input placeholder="Email" type="text" name="email"/></div>
+            <div><input placeholder="Username" type="text" name="username"/></div>
+            <div><input placeholder="Password" type="text" name="password"/></div>
+            <div><input placeholder="IsAdmin" type="checkbox" name="isadmin"/></div>
+            <div><button type="submit">Create</button></div>
+        </form>
+    </div>
+</div>
 
 
 </body>

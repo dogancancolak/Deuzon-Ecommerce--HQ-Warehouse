@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+
+    <form action="/auth/createUser/" method="post" style="display:inline-block">
+            {% csrf_token %}
+            <div><input placeholder="Email" type="text" name="email"/></div>
+            <div><input placeholder="Username" type="text" name="username"/></div>
+            <div><input placeholder="Password" type="password" name="password"/></div>
+            <div><input placeholder="Password Again" type="password" name="passwordagain"/></div>
+            <div><input placeholder="IsAdmin" type="checkbox" name="isadmin"/></div>
+            <div><button type="submit">Create</button></div>
+    </form>
+
+</body>
+</html>
