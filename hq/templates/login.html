@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+
+    <form action="/home/makeAuth/" method="post">
+        {% csrf_token %}
+        <input name="username"/>
+        <input name="password"/>
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

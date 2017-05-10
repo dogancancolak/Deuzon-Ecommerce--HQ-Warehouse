@@ -5,41 +5,40 @@ from django.db import models
 
 class Product(models.Model):
 
-    name = models.CharField(max_length=30)
-    author = models.CharField(max_length=30)
-    date = models.DateField
-    price = models.PositiveIntegerField
-    quantity = models.IntegerField
-    soldcount = models.IntegerField
-    category = models.CharField
-    image = models.ImageField
+    name = models.CharField(max_length=30,default="nil", null=True)
+    author = models.CharField(max_length=30,default="nil", null=True)
+    date = models.DateField(null=True)
+    price = models.FloatField(default=0, null=True)
+    quantity = models.IntegerField(default=0, null=True)
+    soldcount = models.IntegerField(default=0, null=True)
+    category = models.CharField(max_length=30,default="nil", null=True)
 
 
 class ProductOrder(models.Model):
 
-    pro_id = models.IntegerField
-    ord_id = models.IntegerField
-    quantity = models.IntegerField
+    pro_id = models.IntegerField(default=0, null=True)
+    ord_id = models.IntegerField(default=0, null=True)
+    quantity = models.IntegerField(default=0, null=True)
 
 
 class Order(models.Model):
 
-    quantity = models.IntegerField
-    userid = models.IntegerField
-    trackNo = models.IntegerField
-    billNo = models.IntegerField
-    customerAddress = models.CharField
-    customerPhone = models.CharField
+    quantity = models.IntegerField(default=0, null=True)
+    userid = models.IntegerField(default=0, null=True)
+    trackNo = models.IntegerField(default=0, null=True)
+    billNo = models.IntegerField(default=0, null=True)
+    customerAddress = models.CharField(max_length=30,default="nil", null=True)
+    customerPhone = models.CharField(max_length=30,default="nil", null=True)
     
 
 class User(models.Model):
 
-    email = models.CharField
-    username = models.CharField
-    password = models.CharField
+    email = models.CharField(max_length=30,default="nil", null=True)
+    username = models.CharField(max_length=30,default="nil", null=True)
+    password = models.CharField(max_length=30,default="nil", null=True)
 
 
 class CargoPrice(models.Model):
 
-    quantity = models.IntegerField
-    price = models.PositiveIntegerField
+    quantity = models.FloatField(default=0, null=True)
+    price = models.PositiveIntegerField(default=0, null=True)
