@@ -59,7 +59,6 @@ def delete_product(request):
 
 
 def handle_product(request):
-    embed()
     if request.POST["button"] == "create":
         return create_product(request)
     elif request.POST["button"] == "delete":

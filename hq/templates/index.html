@@ -9,7 +9,7 @@
     <div id="" style="overflow-y: scroll; height:300px; width: 50%; display: inline-block ">
 
     {% for product in products %}
-        <p onclick="editFunc()">
+        <p>
             {{ product.name }}
             {{ product.author }}
             {{ product.category }}
@@ -52,7 +52,7 @@
 
     </div>
     <div style="display: inline-block">
-        <form action="/auth/createUser/" method="post" style="display:inline-block">
+        <form action="/auth/handle_user/" method="post" style="display:inline-block">
             {% csrf_token %}
             <div><input placeholder="Email" type="text" name="email"/></div>
             <div><input placeholder="Username" type="text" name="username"/></div>
@@ -61,8 +61,8 @@
             <div><input type="hidden" name="homepage" value="1"></div>
             <div><input type="hidden" name="isadmin" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"></div>
             <div>
-                <button type="submit" name="create" value="click">Create</button>
-                <button type="submit" name="delete" value="click">Delete</button>
+                <button type="submit" name="button" value="create">Create</button>
+                <button type="submit" name="button" value="delete">Delete</button>
             </div>
         </form>
     </div>
@@ -70,9 +70,4 @@
 
 
 </body>
-<script>
-    function editFunc() {
-        document.getElementsByName("name").placeholder = "red";
-}
-</script>
 </html>
