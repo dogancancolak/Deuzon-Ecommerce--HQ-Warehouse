@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <form action="/auth/createUser/" method="post" style="display:inline-block">
+    <form action="/user/handle_user/" method="post" style="display:inline-block">
             {% csrf_token %}
             <div><input placeholder="Email" type="text" name="email"/></div>
             <div><input placeholder="Username" type="text" name="username"/></div>
@@ -14,7 +14,7 @@
             <div><input placeholder="Password Again" type="password" name="passwordagain"/></div>
             <div><input type="hidden" name="homepage" value="0"></div>
             <div><input type="hidden" name="isadmin" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"></div>
-            <div><button type="submit">Create</button></div>
+            <div><button type="submit" value="create">Create</button></div>
     </form>
 
 </body>
