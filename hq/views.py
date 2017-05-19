@@ -1,8 +1,7 @@
 from django.http import HttpResponse
 from .models import Product
-from authentication.models import User
+from user.models import User
 from django.shortcuts import render
-from IPython import embed
 
 # Create your views here.
 
