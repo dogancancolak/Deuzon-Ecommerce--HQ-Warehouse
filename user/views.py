@@ -2,6 +2,8 @@ from django.shortcuts import render
 from .models import User
 from hq.views import index
 from authentication.views import login
+from .serializers import UserSerializer
+from django.http import JsonResponse
 
 # Create your views here.
 
@@ -43,3 +45,10 @@ def handle_user(request):
         return create_user(request)
     elif request.POST["button"] == "delete":
         return delete_user(request)
+
+def user_list(request):
+
+    if request.method == 'GET':
+        user = User.objects.all()
+        serializer = UserSerializer(user, many=True)
+        return JsonResponse(serializer.data, safe=False)

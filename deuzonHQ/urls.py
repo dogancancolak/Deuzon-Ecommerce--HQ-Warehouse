@@ -20,5 +20,6 @@ urlpatterns = [
     url(r'^home/', include('hq.urls')),
     url(r'^auth/', include('authentication.urls')),
     url(r'^user/', include('user.urls')),
+    url(r'^product/', include('product.urls')),
     url(r'^admin/', admin.site.urls),
 ]

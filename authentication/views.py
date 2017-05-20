@@ -15,10 +15,10 @@ def makeAuth(request):
 
 
 def register(request):
-    return render(request, 'register.html', {})
+    return render(request, 'templates/register.html', {})
 
 
 def login(request):
-    return render(request, 'login.html', {})
+    return render(request, 'templates/login.html', {})
 
 
