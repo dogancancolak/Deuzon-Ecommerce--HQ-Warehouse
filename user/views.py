@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from .models import User
+from hq.views import index
+from authentication.views import login
 
 # Create your views here.
 

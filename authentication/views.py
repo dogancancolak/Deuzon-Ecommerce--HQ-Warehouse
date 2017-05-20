@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from deuzonHQ.deuzonHQ.user.models import User
+from user.models import User
 from hq.views import index
 
 
