@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from rest_framework.parsers import JSONParser
 from hq.models import ProductOrder
 from .models import Order
-from .serializers import OrderSerializer, ProductOrderSerializer
+from .serializers import OrderSerializer
 # Create your views here.
 
 def new_order(request):
@@ -20,5 +20,4 @@ def new_order(request):
 def list_order(request):
     orders = Order.objects.all()
     serializer = OrderSerializer(orders, many=True)
-    embed()
     return JsonResponse(serializer.data, safe=False)
