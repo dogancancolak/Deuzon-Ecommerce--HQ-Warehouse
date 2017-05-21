@@ -30,10 +30,8 @@ def delete_user(request):
     params = request.POST
 
     if (params["username"] is not "") \
-            and (params["email"] is not "") \
-            and (params["password"] is not ""):
+            and (params["email"] is not ""):
         user = User.objects.get(username=params["username"],
-                                      password=params["password"],
                                       email=params["email"]).pk
 
         User.objects.filter(pk=user).delete()
@@ -45,6 +43,7 @@ def handle_user(request):
         return create_user(request)
     elif request.POST["button"] == "delete":
         return delete_user(request)
+
 
 def user_list(request):
 

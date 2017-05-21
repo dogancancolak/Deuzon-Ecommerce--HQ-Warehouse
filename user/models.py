@@ -9,3 +9,7 @@ class User(models.Model):
     username = models.CharField(max_length=30, default="nil", null=True)
     password = models.CharField(max_length=30, default="nil", null=True)
     isAdmin = models.BooleanField(default=False)
+
+    def __str__(self):
+        line = str(self.pk) + ' ' + str(self.username)
+        return line

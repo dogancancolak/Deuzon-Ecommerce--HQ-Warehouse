@@ -11,3 +11,7 @@ class Product(models.Model):
     quantity = models.IntegerField(default=0, null=True)
     soldcount = models.IntegerField(default=0, null=True)
     category = models.CharField(max_length=30,default="nil", null=True)
+
+    def __str__(self):
+        line = str(self.pk) + ' ' + str(self.name)
+        return line
