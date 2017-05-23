@@ -1,7 +1,8 @@
 from django.conf.urls import url
 
-from .views import list_order
+from . import views
 
 urlpatterns = [
-    url(r'^$', list_order, name='list_order')
+    url(r'^$', views.list_order, name='list_order'),
+    url(r'^new/$', views.new_order, name='new_order')
 ]

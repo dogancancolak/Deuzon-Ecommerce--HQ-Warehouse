@@ -14,5 +14,6 @@ class ProductOrder(models.Model):
 
 class CargoPrice(models.Model):
 
+    name = models.CharField(max_length=3,default="N", null=True)
     quantity = models.FloatField(default=0, null=True)
     price = models.PositiveIntegerField(default=0, null=True)
