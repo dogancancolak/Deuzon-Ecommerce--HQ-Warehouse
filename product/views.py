@@ -33,15 +33,9 @@ def create_product(request):
     return index(request)
 
 
-def delete_product(request):
-    params = request.POST
-
-    if (params["name"] is not "") \
-            and (params["author"] is not ""):
-        product = Product.objects.get(name=params["name"],
-                                      author=params["author"]).pk
-
-        Product.objects.filter(pk=product).delete()
+def delete_product(request,id):
+    
+    Product.objects.filter(pk=id).delete()
     return index(request)
 
 
@@ -54,7 +48,6 @@ def product_list(request):
     if request.method == 'GET':
         product = Product.objects.all()
         serializer = ProductSerializer(product, many=True)
-        embed()
         return JsonResponse(serializer.data, safe=False)
 
     elif request.method == 'POST':

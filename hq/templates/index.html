@@ -3,40 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <body>
-<div>
-    <div id="" style="overflow-y: scroll; height:300px; width: 50%; display: inline-block ">
-
-    {% for product in products %}
-        <p>
-            {{ product.name }}
-            {{ product.author }}
-            {{ product.category }}
-            {{ product.date }}
-            {{ product.quantity }}
-            {{ product.price }}
-            {{ product.soldcount }}
-        </p>
-    {% endfor %}
-
-    </div>
-    <div style="display: inline-block">
-        <form action="/product/handle_product/" method="post" style="display:inline-block">
+    <div class="container">
+        <h2>Products Table</h2>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Sold Count</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+      <tr>
+        
+        <td>{{ product.name }}</td>
+        <td>{{ product.author }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.date }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.soldcount }}</td>
+        <td><a class="btn btn-primary" href = "./edit/{{ product.id }}">Edit</a>
+        <a class="btn btn-danger" href = "/product/del/{{ product.id }}">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <form action="/product/handle_product/" method="post" style="display:inline-block">
             {% csrf_token %}
-            <div><input placeholder="Name" type="text" name="name" id="name"/></div>
-            <div><input placeholder="Author" type="text" name="author"/></div>
-            <div><input placeholder="Category" type="text" name="category"/></div>
-            <div><input placeholder="2017-05-06" type="text" name="date"/></div>
-            <div><input placeholder="Quantity" type="number" name="quantity"/></div>
-            <div><input placeholder="Price" type="number" name="price"/></div>
-            <div><input placeholder="Sold Count" type="number" name="soldcount"/></div>
-            <div>
-                <button type="submit" name="button" value="create">Create</button>
-                <button type="submit" name="button" value="delete">Delete</button>
-            </div>
-        </form>
-    </div>
+            <input type="number" name="id" id="id" hidden/>
+            <td><input class="form-control" placeholder="Name" type="text" name="name" id="name"/></td>
+            <td><input class="form-control" placeholder="Author" type="text" name="author"/></td>
+            <td><input class="form-control" placeholder="Category" type="text" name="category"/></td>
+            <td><input class="form-control" placeholder="2017-05-06" type="text" name="date"/></td>
+            <td><input class="form-control" placeholder="Quantity" type="number" name="quantity"/></td>
+            <td><input class="form-control" placeholder="Price" type="number" name="price"/></td>
+            <td><input class="form-control" placeholder="Sold Count" type="number" name="soldcount"/></td>
+            <td><button type="submit" name="button" value="create">Create</button></td>
+            </form>
+        </tr>
+        
+    </tfoot>
+  </table>
 </div>
 <div>
     <div id="" style="overflow-y: scroll; height:300px; width: 50%; display: inline-block ">

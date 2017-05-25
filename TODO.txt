@@ -1,0 +1,2 @@
+Frontend: product table's edit.js
+Backend: create or update -> query by product's id 
