@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -11,8 +12,9 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
+
+
 <body>
     <div class="container">
         <h2>Products Table</h2>
@@ -47,7 +49,7 @@
     </tbody>
     <tfoot>
         <tr>
-            <form action="/product/create/" method="post" style="display:inline-block">
+            <form action="/product/create/" method="post">
             {% csrf_token %}
             <td><input class="form-control" placeholder="ID" type="number" name="id" id="id" value="{% if selected%}{{selected.id}}{% endif%}"/></td>
             <td><input class="form-control" placeholder="Name" type="text" name="name" id="name" value="{% if selected%}{{selected.name}}{% endif%}"/></td>
@@ -64,44 +66,52 @@
     </tfoot>
   </table>
 </div>
-<div>
-    <div id="" style="overflow-y: scroll; height:300px; width: 50%; display: inline-block ">
 
-    {% for user in users %}
-        <p>
-            {{ user.email }}
-            {{ user.username }}
-            {{ user.password }}
-            {{ user.isAdmin }}
-        </p>
-    {% endfor %}
 
-    </div>
-    <div style="display: inline-block">
-        <form action="/user/handle_user/" method="post" style="display:inline-block">
+<div class="container">
+        <h2>Users Table</h2>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th>Admin</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+      <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.password }}</td>
+        <td>{{ user.isAdmin }}</td>
+        <td><a class="btn btn-primary" href="/home/user/{{ user.id }}">Edit</a>
+        <a class="btn btn-danger" href = "/user/del/{{ user.id }}">Delete</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+        <tr>
+            <form action="/user/create/" method="post" >
             {% csrf_token %}
-            <div><input placeholder="Email" type="text" name="email"/></div>
-            <div><input placeholder="Username" type="text" name="username"/></div>
-            <div><input placeholder="Password" type="text" name="password"/></div>
-            <div><input placeholder="Password Again" type="password" name="passwordagain"/></div>
-            <div><input type="hidden" name="homepage" value="1"></div>
-            <div><input type="hidden" name="isadmin" value="0"><input type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"></div>
-            <div>
-                <button type="submit" name="button" value="create">Create</button>
-                <button type="submit" name="button" value="delete">Delete</button>
-            </div>
-        </form>
-    </div>
+            <td><input class="form-control" placeholder="ID" type="number" name="id" id="id" value="{% if selectedUser%}{{selectedUser.id}}{% endif%}"/></td>
+            <td><input class="form-control" placeholder="Email" type="text" name="email" value="{% if selectedUser%}{{selectedUser.email}}{% endif%}"/></td>
+            <td><input class="form-control" placeholder="Username" type="text" name="username" value="{% if selectedUser%}{{selectedUser.username}}{% endif%}"/></td>
+            <td><input class="form-control" placeholder="Password" type="text" name="password" value="{% if selectedUser%}{{selectedUser.password}}{% endif%}"/></td>
+            <td><input type="hidden" name="isAdmin" value="0"><input class="form-control" type="checkbox" onclick="this.previousSibling.value=1-this.previousSibling.value"></td>
+            <input type="hidden" name="homepage" value="1">
+            <td><button type="submit" name="button" class="btn btn-success">Create</button></td>
+            
+            </form>
+        </tr>
+        
+    </tfoot>
+  </table>
 </div>
 
-<script>
-    function edit(a) {
-        var a = 0
-        console.log('{{products.a}}')
-        document.getElementById("name").value = a.name;
-    }
-
-</script>
 </body>
 
 </html>

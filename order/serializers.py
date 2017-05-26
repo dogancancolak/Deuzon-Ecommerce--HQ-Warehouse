@@ -6,7 +6,6 @@ class ProductListingSerializer(serializers.RelatedField):
 
     def to_representation(self, value):
         dict={}
-        dict['name'] = value.pro_id.name
         dict['id'] = value.pro_id.pk
         dict['quantity'] = value.quantity
         return dict

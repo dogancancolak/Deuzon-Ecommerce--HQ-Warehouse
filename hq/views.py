@@ -3,16 +3,21 @@ from user.models import User
 from django.shortcuts import render
 from .models import CargoPrice
 import requests
+from IPython import embed
 
 
 # Create your views here.
 
 
-def index(request,selected=0):
+def index(request,selected=0,selectedUser=0):
     if selected:
         products = Product.objects.all()
         users = User.objects.all()
         return render(request, 'index.html', {'products': products, 'users': users, 'selected':selected})
+    elif selectedUser:
+        products = Product.objects.all()
+        users = User.objects.all()
+        return render(request, 'index.html', {'products': products, 'users': users, 'selectedUser':selectedUser})
     else:
         products = Product.objects.all()
         users = User.objects.all()
