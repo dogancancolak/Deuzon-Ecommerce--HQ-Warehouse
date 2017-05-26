@@ -8,10 +8,16 @@ import requests
 # Create your views here.
 
 
-def index(request):
-    products = Product.objects.all()
-    users = User.objects.all()
-    return render(request, 'index.html', {'products': products, 'users': users})
+def index(request,selected=0):
+    if selected:
+        products = Product.objects.all()
+        users = User.objects.all()
+        return render(request, 'index.html', {'products': products, 'users': users, 'selected':selected})
+    else:
+        products = Product.objects.all()
+        users = User.objects.all()
+        return render(request, 'index.html', {'products': products, 'users': users})
+    
 
 
 def get_cargo_prices():

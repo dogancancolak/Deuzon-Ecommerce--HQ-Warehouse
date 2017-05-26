@@ -19,6 +19,7 @@
   <table class="table table-condensed">
     <thead>
       <tr>
+        <th>ID</th>
         <th>Name</th>
         <th>Author</th>
         <th>Category</th>
@@ -31,7 +32,7 @@
     <tbody>
         {% for product in products %}
       <tr>
-        
+        <td>{{ product.id }}</td>
         <td>{{ product.name }}</td>
         <td>{{ product.author }}</td>
         <td>{{ product.category }}</td>
@@ -39,24 +40,24 @@
         <td>{{ product.quantity }}</td>
         <td>{{ product.price }}</td>
         <td>{{ product.soldcount }}</td>
-        <td><a class="btn btn-primary" href = "./edit/{{ product.id }}">Edit</a>
+        <td><a class="btn btn-primary" href="/home/product/{{ product.id }}">Edit</a>
         <a class="btn btn-danger" href = "/product/del/{{ product.id }}">Delete</a></td>
       </tr>
       {% endfor %}
     </tbody>
     <tfoot>
         <tr>
-            <form action="/product/handle_product/" method="post" style="display:inline-block">
+            <form action="/product/create/" method="post" style="display:inline-block">
             {% csrf_token %}
-            <input type="number" name="id" id="id" hidden/>
-            <td><input class="form-control" placeholder="Name" type="text" name="name" id="name"/></td>
-            <td><input class="form-control" placeholder="Author" type="text" name="author"/></td>
-            <td><input class="form-control" placeholder="Category" type="text" name="category"/></td>
-            <td><input class="form-control" placeholder="2017-05-06" type="text" name="date"/></td>
-            <td><input class="form-control" placeholder="Quantity" type="number" name="quantity"/></td>
-            <td><input class="form-control" placeholder="Price" type="number" name="price"/></td>
-            <td><input class="form-control" placeholder="Sold Count" type="number" name="soldcount"/></td>
-            <td><button type="submit" name="button" value="create">Create</button></td>
+            <td><input class="form-control" placeholder="ID" type="number" name="id" id="id" value="{% if selected%}{{selected.id}}{% endif%}"/></td>
+            <td><input class="form-control" placeholder="Name" type="text" name="name" id="name" value="{% if selected%}{{selected.name}}{% endif%}"/></td>
+            <td><input class="form-control" placeholder="Author" type="text" name="author" value="{% if selected%}{{selected.author}}{% endif%}"/></td>
+            <td><input class="form-control" placeholder="Category" type="text" name="category" value="{% if selected%}{{selected.category}}{% endif%}"/></td>
+            <td><input class="form-control" placeholder="2017-05-06" type="text" name="date" value="{% if selected%}{{selected.date}}{% endif%}"/></td>
+            <td><input class="form-control" placeholder="Quantity" type="number" name="quantity" value="{% if selected%}{{selected.quantity}}{% endif%}"/></td>
+            <td><input class="form-control" placeholder="Price" type="number" name="price" value="{% if selected%}{{selected.price}}{% endif%}"/></td>
+            <td><input class="form-control" placeholder="Sold Count" type="number" name="soldcount" value="{% if selected%}{{selected.soldcount}}{% endif%}"/></td>
+            <td><button type="submit" name="button" class="btn btn-success">Create</button></td>
             </form>
         </tr>
         
@@ -93,6 +94,14 @@
     </div>
 </div>
 
+<script>
+    function edit(a) {
+        var a = 0
+        console.log('{{products.a}}')
+        document.getElementById("name").value = a.name;
+    }
 
+</script>
 </body>
+
 </html>
