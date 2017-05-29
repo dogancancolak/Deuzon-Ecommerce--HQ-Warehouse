@@ -3,12 +3,6 @@ from hq.views import index
 from authentication.views import login
 from .serializers import UserSerializer
 from django.http import JsonResponse
-from django.http import JsonResponse
-
-from authentication.views import login
-from hq.views import index
-from .models import User
-from .serializers import UserSerializer
 
 
 def create_user(request):

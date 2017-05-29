@@ -43,8 +43,8 @@ def pay_for_cargo(quantity):
     return r
 
 
-def send_cargo(billNo, phone, address, sourceAddress, name, surname):
-    data = {'billNo': billNo, 'phone': phone, 'Destaddress': address, 'SourceAddress': sourceAddress,
+def send_cargo(billNo, address, name, surname):
+    data = {'billNo': billNo, 'Destaddress': address,
             'CompanyName': 'Deuzon E-Commerce', 'destname': name, 'destsurname': surname}
     trackNo = requests.post('cargo api', data)
     return trackNo

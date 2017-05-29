@@ -5,9 +5,6 @@ from hq.views import index
 from user.models import User
 
 
-# Create your views here.
-
-
 def makeAuth(request):
     usr = User.objects.filter(username=request.POST["username"], password=request.POST["password"])
     if usr:

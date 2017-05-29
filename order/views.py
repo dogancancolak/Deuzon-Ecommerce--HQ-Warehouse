@@ -21,11 +21,12 @@ def new_order(request):
                 return 403
 
         #billNo = pay_for_cargo(data['totalquantity'])
-        #trackNo = send_cargo(billNo,data['customerAddress'],data['customerPhone'],data['products'])
+        #trackNo = send_cargo(billNo,data['customerAddress'],data['name'],data['surname'])
         
         order = Order.objects.create(totalquantity=data['totalquantity'], totalprice = data['totalprice'],
                                     userid = data['userid'], trackNo = 0, billNo = 0,
-                                    customerAddress = data['customerAddress'], customerPhone = data['customerPhone'])
+                                    customerAddress = data['customerAddress'], customerName = data['customerName'], 
+                                    customerSurname = data['customerSurname'])
                              
         for key in product_dict:
             ProductOrder.objects.create(pro_id=Product.objects.get(pk=key['id']), ord_id=Order.objects.get(pk=order.pk), quantity=key['quantity'])
