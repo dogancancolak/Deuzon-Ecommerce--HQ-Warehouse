@@ -1,14 +1,16 @@
-from django.shortcuts import render
 from django.http import HttpResponse
-from user.models import User
+from django.shortcuts import render
+
 from hq.views import index
+from user.models import User
 
 
 # Create your views here.
 
 
 def makeAuth(request):
-    if User.objects.filter(username=request.POST["username"], password=request.POST["password"]):
+    usr = User.objects.filter(username=request.POST["username"], password=request.POST["password"])
+    if usr:
         return index(request)
     else:
         return HttpResponse("403")
@@ -20,5 +22,3 @@ def register(request):
 
 def login(request):
     return render(request, 'login.html', {})
-
-

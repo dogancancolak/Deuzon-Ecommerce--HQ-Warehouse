@@ -6,7 +6,7 @@
 </head>
 <body>
 
-    <form action="/user/handle_user/" method="post" style="display:inline-block">
+    <form action="/user/create/" method="post" style="display:inline-block">
             {% csrf_token %}
             <div><input placeholder="Email" type="text" name="email"/></div>
             <div><input placeholder="Username" type="text" name="username"/></div>

@@ -1,20 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <title>Login</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 </head>
+
 <body>
 
-    <form action="/auth/makeAuth/" method="post">
+<div class="container fa-align-center">
+
+    <form action="/auth/makeAuth/" class="form-signin" method="post">
         {% csrf_token %}
-        <input name="username"/>
-        <input name="password"/>
-        <button type="submit">Login</button>
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <label for="inputusername" class="sr-only">Username</label>
+        <input type="text" id="inputusername" class="form-control" placeholder="Username" required autofocus
+               name="username">
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="password">
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
     </form>
-<div>
-    <label>You dont have an Account</label>
-    <a href="/auth/register/" class="btn-link">Register</a>
-</div>
+
+    <div class="align">
+        <label class="label-info align-right">You dont have an Account</label>
+        <a href="/auth/register/" class="btn-warning">Register</a>
+    </div>
+
+</div> <!-- /container -->
+
 </body>
 </html>
