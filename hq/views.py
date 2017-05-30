@@ -1,7 +1,7 @@
 import requests
+from IPython import embed
 from django.shortcuts import render
 
-from IPython import embed
 from product.models import Product
 from user.models import User
 from .models import CargoPrice
@@ -30,7 +30,8 @@ def get_cargo_prices():
 
 
 def pay_for_cargo(quantity):
-    data = {'IBAN': 'cargo_company_IBAN'}
+    data = {'source_account': 'some kind of source account', 'destination_account': 'some kind of dest account',
+            'description': 'payment for ' + str(quantity) + ' cargo', 'password': 'some kind of pass'}
     price = 0
     prices = CargoPrice.objects.all().order_by('-quantity')
     for element in prices:
@@ -38,7 +39,8 @@ def pay_for_cargo(quantity):
             price = element.price
         else:
             break
-    data['price'] = price
+    data['amount'] = int(price)
+    embed()
     r = requests.post('bank api', data)
     return r
 

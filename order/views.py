@@ -19,6 +19,7 @@ def new_order(request):
             pro = Product.objects.get(pk=key['id'])
             if pro.quantity < key['quantity']:
                 return 403
+        
 
         #billNo = pay_for_cargo(data['totalquantity'])
         #trackNo = send_cargo(billNo,data['customerAddress'],data['name'],data['surname'])
