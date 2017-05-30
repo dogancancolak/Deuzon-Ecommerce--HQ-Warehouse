@@ -39,10 +39,12 @@ def pay_for_cargo(quantity):
             price = element.price
         else:
             break
+    if price == 0:
+        price = prices[0].price
     data['amount'] = int(price)
-    embed()
     r = requests.post('bank api', data)
-    return r
+    r = r.json()
+    return r['bank_receiptID']
 
 
 def send_cargo(billNo, address, name, surname):

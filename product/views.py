@@ -5,6 +5,8 @@ from rest_framework.parsers import JSONParser
 from hq.views import index
 from .models import Product
 from .serializers import ProductSerializer
+import requests
+from IPython import embed
 
 
 # Create your views here.
