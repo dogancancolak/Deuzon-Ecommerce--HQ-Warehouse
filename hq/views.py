@@ -30,8 +30,8 @@ def get_cargo_prices():
 
 
 def pay_for_cargo(quantity):
-    data = {'source_account': 'some kind of source account', 'destination_account': 'some kind of dest account',
-            'description': 'payment for ' + str(quantity) + ' cargo', 'password': 'some kind of pass'}
+    data = {'source_account': 'TRDOGANCAN22', 'destination_account': 'TRMERTCAN22',
+            'description': 'payment for ' + str(quantity) + ' cargo', 'password': '12345'}
     price = 0
     prices = CargoPrice.objects.all().order_by('-quantity')
     for element in prices:
@@ -42,7 +42,7 @@ def pay_for_cargo(quantity):
     if price == 0:
         price = prices[0].price
     data['amount'] = int(price)
-    r = requests.post('bank api', data)
+    r = requests.post('http://146.185.147.162/accounts/transaction/api/', data)
     r = r.json()
     return r['bank_receiptID']
 

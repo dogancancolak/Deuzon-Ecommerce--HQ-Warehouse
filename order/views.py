@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 
 from hq.models import ProductOrder
+from hq.views import pay_for_cargo
 from product.models import Product
 from .models import Order
 from .serializers import OrderSerializer
@@ -20,11 +21,11 @@ def new_order(request):
             if pro.quantity < key['quantity']:
                 return 403
 
-        # billNo = pay_for_cargo(data['totalQuantity'])
-        # trackNo = send_cargo(billNo,data['address'],data['name'],data['surname'])
+        billNo = pay_for_cargo(data['totalQuantity'])
+        # trackNo = send_cargo(billNo,data['address'],data['name'],data['surname'],data['totalQuantity'])
 
         order = Order.objects.create(totalquantity=data['totalQuantity'], totalprice=data['totalPrice'],
-                                     userid=data['userid'], trackNo=0, billNo=0, customerAddress=data['address'],
+                                     userid=data['userid'], trackNo="0", billNo=billNo, customerAddress=data['address'],
                                      customerName=data['name'], customerSurname=data['surname'])
 
         for key in product_dict:

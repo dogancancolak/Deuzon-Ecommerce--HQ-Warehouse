@@ -7,7 +7,7 @@ class Order(models.Model):
     totalquantity = models.IntegerField(default=0, null=True)
     totalprice = models.IntegerField(default=0, null=True)
     userid = models.IntegerField(default=0, null=True)
-    trackNo = models.IntegerField(default=0, null=True)
+    trackNo = models.CharField(max_length=30, default="0", null=True)
     billNo = models.IntegerField(default=0, null=True)
     customerAddress = models.CharField(max_length=30,default="nil", null=True)
     customerName = models.CharField(max_length=30,default="nil", null=True)
